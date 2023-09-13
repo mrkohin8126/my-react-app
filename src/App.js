@@ -1,24 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { useContext, useState } from "react";
+import "./App.css";
+import Homepage from "./component/Homepage";
+import Loginpage from "./component/Loginpage";
+import GlobalState from "./context/GlobalState";
+import MyContext from "./context/MyContext";
 
 function App() {
+  const context = useContext(MyContext);
+  const { isTokenExists } = context;
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    // <GlobalState>
+    <div className="App w-full min-h-screen text-white">
+      {isTokenExists ? <Homepage /> : <Loginpage />}
+      {/* <Homepage /> */}
+      {/* <Loginpage /> */}
     </div>
+    // </GlobalState>
   );
 }
 
